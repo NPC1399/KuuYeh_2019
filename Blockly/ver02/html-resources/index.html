@@ -1,0 +1,283 @@
+<head>
+	<meta charset="utf-8">
+	<!-- parity = 0 -->
+	<title>CAESARBlock</title>
+
+	<!-- styles -->
+	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap-yeti.min.css">
+	<link rel="stylesheet" href="vendor/bootstrap/css/bootstraps-yeti.min.css">
+
+	<link rel="stylesheet" href="assets/fonts/flaticon.mod.css">
+
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="vendor/codemirror/lib/codemirror.css">
+	<link rel="stylesheet" href="vendor/codemirror/theme/twilight.css">
+	<link rel="stylesheet" href="vendor/codemirror/theme/3024-day.css">
+	<link rel="stylesheet" href="vendor/jcubic/css/jquery.terminal.css">
+
+	<!-- codemirror -->
+	<script src="vendor/codemirror/lib/codemirror.js"></script>
+	<script src="vendor/codemirror/addon/selection/active-line.js"></script>
+	<script src="vendor/codemirror/addon/edit/matchbrackets.js"></script>
+	<script src="vendor/codemirror/mode/python/python.js"></script>
+
+	<!-- jQuery -->
+	<script src="vendor/jquery/jquery-2.1.3.min.js"></script>
+	<script src="vendor/jquery/jquery-migrate-1.2.1.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="vendor/jcubic/js/jquery.terminal-min.js"></script>
+	<script src="vendor/jcubic/js/jquery.mousewheel-min.js"></script>
+
+	<!-- blockly assets -->
+	<script src="vendor/blockly-new/blockly_compressed.js"></script>
+	<script src="vendor/blockly-new/blocks_compressed.js"></script>
+	<script src="vendor/blockly-new/python_compressed.js"></script>
+
+
+	<!-- micropython blocks -->
+	<script src="assets/js/blockly_micropython/movement.js"></script>
+	<script src="assets/js/blockly_micropython/matenat.js"></script>
+	<script src="assets/js/blockly_micropython/emoji.js"></script>
+	<script src="assets/js/blockly_micropython/text_to_speech.js"></script>
+	<script src="assets/js/blockly_micropython/matrixled.js"></script>
+	<script src="vendor/blockly-new/msg/js/en.js"></script>
+</head>
+<body >
+
+	 <nav class="navbar navbar-inverse" style="-webkit-app-region: drag; " >
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">CAESARBlock&nbsp;&nbsp;&nbsp;</a>
+          </div>
+
+          <div id="navbarTop" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+               <li class="Editdropdown" style="-webkit-app-region: no-drag">
+              	<a class="dropdown-toggle" type="button" data-toggle="dropdown" color: #515151;>File<span class="caret"></span></a>
+              	<ul id="myFiledropdown" class="dropdown-menus" >
+				  <li><a id="fakenew" ><span><img src="assets/iconscollection/icon16/robot.png"></img></span> New Project</a></li>
+                  <li><a id="fakeload" ><span><img src="assets/iconscollection/icon16/folder.png"></img></span> Open Project</a></li>
+                  <input id="load" style="display: none;" type="file">
+                  <li><a id="fakesave" ><span><img src="assets/iconscollection/icon16/save.png"></img></span> Save Project</a></li>
+                  <li><a id="fakesavepy" target="_blank" ><span><img src="assets/iconscollection/icon16/py-file-format.png"></img></span> Save main.py</a></li>
+                  <li><a target="_blank"><span><img src="assets/iconscollection/icon16/wrench2.png"></img></span> Download Lib</a></li>
+                  <li><a id="btnclose"><span><img src="assets/iconscollection/icon16/exit.png"></img></span> Exit</a></li>
+                </ul>
+              </li>
+
+              <li class="Devdropdown" style="-webkit-app-region: no-drag">
+                <a class="dropdown-toggle" type="button" data-toggle="dropdown">Developer<span class="caret"></span></a>
+                <ul id="myDropdown" class="dropdown-menus" >
+                  <li><a target="_blank" href="https://micropython.org/">MicroPython</a></li>
+                  <li><a target="_blank" href="https://developers.google.com/blockly/">Blockly | Google Developers</a></li>
+                  <li><a target="_blank" href="http://www.st.com/content/st_com/en/products/evaluation-tools/product-evaluation-tools/mcu-eval-tools/stm32-mcu-eval-tools/stm32-mcu-discovery-kits/stm32f4discovery.html">STM32F4-Discovery Board</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li class="dropdown-header">Github</li>
+                  <li><a target="_blank" href="https://github.com/micropython/micropython/wiki/Board-STM32F407-Discovery">MicroPython</a></li>
+                  <li><a target="_blank" href="https://github.com/google/blockly">Blockly</a></li>
+                </ul>
+              </li>
+
+              <li style="-webkit-app-region: no-drag"><a href="#">Contact Us</a></li>
+
+            </ul>
+          </div>
+     	 
+        </div>
+        <div class="form-group pull-right form-icon-topbar">
+				<!-- 
+				<a href="#" class="btn btn-xs btn-icon btn-close" title="close">
+					<span><img src="assets/iconscollection/icon24/icon-39.png"></img></span>
+				</a>
+				-->
+		</div>
+    </nav> 
+
+	<div class="wrapper">
+
+		<div class="code-content">
+			<!-- code editor -->
+
+			<div id="code-editor">
+				<textarea id="thecode" name="thecode" style="width:100%;height:100%" ></textarea>
+			</div>
+			
+			<!-- blockly editor -->
+			<div id="blocklyDiv" style="position: absolute"></div>
+			<textarea id="blocklyCode" style="display:none"></textarea>
+
+			<div id="separator-bar">
+
+				<!-- middle toolbar -->
+				<div class="form-group form-icon-top">
+					<!--
+					<div><p></p></div>
+
+					<button class="btn btn-xs btn-icon btn-default btn-blockmode" title="Switch to Python mode">
+						<span><img src="assets/iconscollection/icon32/construction1.png"></img></span>
+					</button>
+
+					<div><p></p></div>
+
+					<button class="btn btn-xs btn-icon btn-success btn-showcode" title="Show code on Console">Debug</button>
+					-->
+
+					<div><p></p></div>
+
+					<button class="btn btn-xs btn-icon btn-success btn-save" title="Upload to Board">
+						<!--<span class="flaticon-save"></span>-->
+						<span><img src="assets/iconscollection/icon32/multimedia.png"></img></span>
+					</button>
+
+					<div><p></p></div>
+
+					<button class="btn btn-xs btn-icon btn-warning btn-run" title="Run your Program">
+						<!--<span class="flaticon-run"></span>-->
+						<span><img src="assets/iconscollection/icon32/arrows-1.png"></img></span>
+					</button>
+
+					<div><p></p></div>
+					
+					<button class="btn btn-xs btn-icon btn-default btn-interrupt" title="Interrupt your Program">
+						<!--<span class="flaticon-run"></span>-->
+						<span><img src="assets/iconscollection/icon32/stop3.png"></img></span>
+					</button>
+
+					<div><p></p></div>
+
+					<button class="btn btn-xs btn-icon btn-default btn-clearterminal" title="Clear your terminal">
+						<!--<span class="flaticon-run"></span>-->
+						<span><img src="assets/iconscollection/icon32/internet5.png"></img></span>
+					</button>
+
+					<div><p></p></div>
+
+				</div>
+
+				<!-- output panel tab -->
+				<div class="form-group form-icon-bottom">	
+				</div>
+			</div>
+
+		</div>
+
+		<div class="output-panel" >
+			<div class="output-panel-child bar" style="display:none;">
+				<div class="adc-bar" id="adc1">
+					<div class="caption"><center><img src="assets/img/micropython.png" class="img-responsive" alt="Cinque Terre" width="304" height="236"></center></div>
+					<td><textarea id="sortieJS" style="height:100%; width:100%; "></textarea></td>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<xml id="toolbox-beginner" style="display: none">
+
+		
+		<category name="Variables" colour="330">
+			<block type="variable"></block>
+			<block type="equal"></block>
+			<block type="text"></block>
+			<block type="math_number">
+                <field name="NUM">0</field>
+             </block>
+
+		</category>
+
+  		<category name="Functions" colour="290" custom="PROCEDURE"></category>
+		<category name="Logic" colour="210">
+          <block type="controls_if"></block>
+          <block type="logic_compare"></block>
+          <block type="logic_operation"></block>
+          <block type="logic_negate"></block>
+          <block type="logic_boolean"></block>
+        </category>
+        <category name="Loops" colour="120">
+          <block type="controls_repeat_ext">
+            <value name="TIMES">
+              <block type="math_number">
+                <field name="NUM">10</field>
+              </block>
+            </value>
+          </block>
+          <block type="controls_whileUntil"></block>
+        </category>
+        <category name="Math" colour="230">
+          <block type="math_number"></block>
+          <block type="math_arithmetic"></block>
+          <block type="math_single"></block>
+        </category>
+        <category name="Text" colour="20">
+          <block type="text"></block>
+          <block type="text_length"></block>
+          <block type="text_print"></block>
+        </category>
+
+		<sep></sep>
+
+		<category name="Movement" colour="240">
+			<block type="gobtn"></block>
+          	<block type="gobackbtn"></block>
+          	<block type="turnleftbtn"></block>
+          	<block type="turnrightbtn"></block>
+          	<block type="forward_always"></block>
+          	<block type="backward_always"></block>
+          	<block type="turnleft_always"></block>
+          	<block type="turnright_always"></block>
+          	<block type="stopbtn"></block>
+		</category>
+
+		<category name="Delay" colour="210">
+          	<block type="delaybtn"></block>
+		</category>
+
+		<category name="Emoji" colour="195">
+          	<block type="led_smile"></block>
+		</category>
+
+		<category name="Text to Speech" colour="195">
+          	<block type="settalk"></block>
+          	<block type="talk"></block>
+		</category>
+
+		<category name="Matrix LED" colour="0">
+          	<block type="setup_matrix_led"></block>
+          	<block type="turn_on_off_light"></block>
+		</category>
+
+	</xml>
+
+	<div class="messages">
+		<div class="successMsg">Success.</div>
+		<div class="errorMsg">Error.</div>
+	</div>
+
+	<!-- Small modal -->
+	<div id="myPrompt" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Buat variabel</h4>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+					<input type="text" class="form-control" id="myVar">
+					<button class="btn btn-sm" id="myBtn">Create</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="vendor/draggabilly/draggabilly.pkgd.min.js"></script>
+	<script src="assets/js/serial.js"></script>
+	<script src="vendor/blockly/file_io.js"></script>
+	<script src="vendor/blockly/FileSaver.js"></script>
+	<script src="vendor/blockly/blockly_helper.js"></script>
+	<script src="assets/js/main.js"></script>
+
+
+</body>

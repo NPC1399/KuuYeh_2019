@@ -1,1 +1,0 @@
-Please double check, you use a design of generation 1 before you  use this firmware upgrade "AS7265_complete_moonlight.bin"

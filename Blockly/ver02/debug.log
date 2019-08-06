@@ -1,0 +1,30 @@
+[0727/144509:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/144509:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/144509:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/144510:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/144510:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/144510:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/144622:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/144622:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/144622:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/144622:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/144622:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/144622:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/154732:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/154732:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/154732:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/154732:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/154732:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/154732:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/143743:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/143743:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/143743:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/143743:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/143743:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/143743:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/143928:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/143928:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/143936:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/143936:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0727/144111:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0727/144111:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
