@@ -28,3 +28,21 @@
 [0727/143936:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
 [0727/144111:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
 [0727/144111:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0809/162551:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0809/162551:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0809/162551:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0809/162551:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0809/162551:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0809/162551:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0809/162633:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0809/162633:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0809/162633:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0809/162633:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0809/162633:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0809/162633:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0809/162804:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0809/162804:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0809/162804:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0809/162805:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0809/162805:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0
+[0809/162805:ERROR:ffmpeg_demuxer.cc(1510)] media::FFmpegDemuxer::OnReadFrameDone result=-541478725 IsMaxMemoryUsageReached=0

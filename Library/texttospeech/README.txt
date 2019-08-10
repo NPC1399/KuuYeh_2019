@@ -1,7 +1,7 @@
 ﻿version : 1.0
 Last Edit : Yoolaibeef
-Note : ยังทำงานไม่ได้ ต้อง Config Pin ให้ตรงกับบอร์ดใหม่
-Status : NOT DONE
+Note : ทำงานได้เรียบร้อยแล้ว
+Status : DONE
 ===================
 SIMPLE CODE
 --------------

@@ -31,15 +31,21 @@ class S1V30120:
     def __init__(self,SPI):
 
         #Pin settings
-        #MICROPY_HW_SPI3_NSS         (pin_A4)
-        #MICROPY_HW_SPI3_SCK         (pin_B3)
-        #MICROPY_HW_SPI3_MISO        (pin_B4) ----> SDO 
-        #MICROPY_HW_SPI3_MOSI        (pin_B5) ----> SDI
-        self.S1V30120_RST = Pin('F15', Pin.OUT_PP)
+        # -----------------------------
+        # SCK|MOSI|NC  |5V|GND|NC  |RDY |NC
+        # PI1|PI3 |PH14|5V|GND|PD13|PB15|PB13
+        # -----------------------------
+        # CS  |MISO|NC  |GND|E3V3|NC  |RST |MUTE
+        # PD11|PI2 |PH13|GND|3V3 |PD12|PB14|PB12
+        # -----------------------------
+        #define MICROPY_HW_SPI2_SCK  (pin_I1)
+        #define MICROPY_HW_SPI2_MISO (pin_I2)
+        #define MICROPY_HW_SPI2_MOSI (pin_I3)
+        self.S1V30120_RST = Pin('PB14', Pin.OUT_PP)
         #self.S1V30120_RDY = Pin('G9', Pin.IN, Pin.PULL_UP)  #For Green Board
-        self.S1V30120_RDY = Pin('G9',Pin.IN)
-        self.S1V30120_CS = Pin('E13', Pin.OUT_PP)
-        self.S1V30120_MUTE = Pin('G14', Pin.OUT_PP)
+        self.S1V30120_RDY = Pin('PB15',Pin.IN)
+        self.S1V30120_CS = Pin('PD11', Pin.OUT_PP)
+        self.S1V30120_MUTE = Pin('PB12', Pin.OUT_PP)
 
         #Unmute
         self.S1V30120_MUTE.low()
