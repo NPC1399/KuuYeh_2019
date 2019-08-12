@@ -43,7 +43,7 @@ class S1V30120:
         #define MICROPY_HW_SPI2_MOSI (pin_I3)
         self.S1V30120_RST = Pin('PB14', Pin.OUT_PP)
         #self.S1V30120_RDY = Pin('G9', Pin.IN, Pin.PULL_UP)  #For Green Board
-        self.S1V30120_RDY = Pin('PB15',Pin.IN)
+        self.S1V30120_RDY = Pin('PB15',Pin.IN, Pin.PULL_DOWN)
         self.S1V30120_CS = Pin('PD11', Pin.OUT_PP)
         self.S1V30120_MUTE = Pin('PB12', Pin.OUT_PP)
 
