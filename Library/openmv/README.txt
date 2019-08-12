@@ -1,5 +1,15 @@
 ﻿version : 1.0
 Last Edit : Yoolaibeef
-Note : ทำงานได้แล้ว แต่ยังเป็นการทำงานแบบ Stand-Alone ก็คือเสมือนกับเป็น OpenMV แยกเหมือนแต่ก่อน แล้วส่งค่ามาที่บอร์ดผ่าน UART อยู่ --> เราต้องทำให้มันส่งค่าได้ภายในบอร์ดเลย ไม่ต้องผ่าน UART
+Note : ทำงานได้แล้ว สร้าง Class เรียบร้อย เรียกใช้ได้เลย
 Status : DONE
+===============
+SIMPLE CODE
+---------------
+import pyb, time, openmv_reading 
+
+opmv = openmv_reading.FATAG()
+
+while 1:
+	print(opmv.ATAG())
+---------------
 
