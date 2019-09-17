@@ -1,17 +1,15 @@
-﻿version : 1.0
-Last Edit : Yoolaibeef
-Note : ตอนนี้ print_text ติดปัญหาที่มันปริ้นท์ออกมาผิดทาง
-คือจากที่มันควรปริ้นท์แนวนอน มันดันปริ้นท์แนวตั้ง (ยังแก้ไม่ได้)
-Status : NOT DONE
+﻿version : 2.0
+Last Edit : Matenut
+Note : ตอนนี้พี่นัททำการแก้ไขเรียบร้อยแล้ว แต่ยังต้องการบางฟังก์ชัน เช่น print_text แบบไม่เลื่อน
+Status : DONE
 ===================
 SIMPLE CODE
 --------------
 import machine
 import is31fl3731
 
-# NEW BOARD USE I2C(2)
-I2C_1 = machine.I2C(1)	
-matrix = is31fl3731.Matrix(I2C_1)
+I2C_2 = machine.I2C(2)	
+matrix = is31fl3731.Matrix(I2C_2)
 
 # TEST FUNCTION HERE!
 matrix.print_text("Fento!",15,10)

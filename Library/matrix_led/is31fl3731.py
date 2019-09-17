@@ -27,8 +27,8 @@ _BLINK_OFFSET = const(0x12)
 _COLOR_OFFSET = const(0x24)
 
 class Matrix:
-    width = 7
-    height = 17
+    width = 17
+    height = 7
 
     def __init__(self, i2c, address=0x74):
         self.i2c = i2c
@@ -45,9 +45,9 @@ class Matrix:
         self.fill(0)
         if data_num >= 0 and data_num <= 99:
             if data_num >= 0 and data_num <= 9:
-                self.fr.text(str(data_num), 2, 1, intensity)
+                self.fr.text(str(data_num), 5, 0, intensity)
             elif data_num >= 10 and data_num <= 99:
-                self.fr.text(str(data_num), 2, 1, intensity)
+                self.fr.text(str(data_num), 2, 0, intensity)
         else:
             print("Just 0 - 99 only for this function")
 
@@ -211,7 +211,14 @@ class Matrix:
         self.i2c.writeto_mem(self.address, _COLOR_OFFSET, data)
 
     def _pixel_addr(self, x, y):
-        return x + y * 16
+        y = 6 - y
+        if x > 8:
+            x = x - 8
+            y = 6 - (y + 8)
+        else:
+            x = 8 - x
+        return x * 16 + y
+        #return x + y * 16
 
     def pixel(self, x, y, color=None, blink=None, frame=None):
         if not 0 <= x <= self.width:
