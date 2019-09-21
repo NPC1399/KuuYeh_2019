@@ -66,8 +66,10 @@ class FATAG:
                 self.led_state = 1
 
                 # Send data
-                self.data_raw = str(int((self.tag_id/10)%10)) + str(int(self.tag_id%10)) + "\r\n"        
-                return self.data_raw
+                # self.data_raw = str(int((self.tag_id/10)%10)) + str(int(self.tag_id%10)) + "\r\n"   
+                pyb.LED(1).off()    
+                pyb.LED(2).on()
+                return self.tag_id
                 
             self.last_tag_id = self.tag_id
 
