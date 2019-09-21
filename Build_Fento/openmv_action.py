@@ -16,6 +16,7 @@ class OPEN_MV():
     def __init__(self):
 
         # Setup OpenMV
+
         self.opmv = openmv_reading.FATAG()
 
         # Setup sign
@@ -607,7 +608,6 @@ class OPEN_MV():
                 self.matrix.fill(0)
 
             print("end")
-            pyb.delay(1000)
 
 
 
