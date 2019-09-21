@@ -4,6 +4,7 @@ import machine
 from pyb import SPI
 from pyb import Pin
 
+import sign
 import motor # Motor
 import is31fl3731 # Matrix LED
 import S1V30120 # Text To Speech
@@ -27,12 +28,8 @@ class STRAT_PROGRAM:
         # Setup OpenMV
         self.opmv = openmv_reading.FATAG()
 
-        # Setup Motor
-        self.robot = motor.MOTOR()
-
         # Setup Choose Mode
         self.whileMode = True
-        self.str_mode_max = 5
         self.modeChoose()
 
 
@@ -41,47 +38,35 @@ class STRAT_PROGRAM:
 
         change_mode = False
         str_mode = 1
+        self.s=sign.Signs()
 
         while (self.whileMode == True):
 
             # Read OpenMV
             self.data_raw = self.opmv.ATAG()
-
-            # Mode Observe
-            if (self.data_raw == 7):
-                str_mode += 1
-                self.matrix.fill(0)
-                change_mode = True
-            elif (self.data_raw == 8):
-                str_mode -= 1
-                self.matrix.fill(0)
-                change_mode = True
-
-            if (str_mode > self.str_mode_max):
-                str_mode = 1
-            elif (str_mode <= 0):
-                str_mode = self.str_mode_max
-
+            self.matrix.print_num(str_mode,10)
             print(str_mode)
             print(self.data_raw)
-            self.matrix.print_num(str_mode,128)
 
 
-
-
-
-            # Mode Select
-            if ((self.data_raw == 9) | (self.data_raw == 10)):
-                self.matrix.fill(0)
-
-
+            # Mode Observe
+            if (self.data_raw == 49):
+                str_mode = 1
+                change_mode = True
+            elif (self.data_raw == 50):
+                str_mode = 2
+                change_mode = True
+            elif (self.data_raw == 51):
+                str_mode = 3
+                change_mode = True
+            elif (self.data_raw == 61):
                 if (str_mode == 1):
-                    self.matrix.print_text("OpenMV Mode",10,20)
+                    #self.matrix.print_text("OpenMV Mode",10,20)
                     self.whileMode = False
+                    self.s.camsign()
+                    pyb.delay(1000)
                     import openmv_action
                     opmv_action = openmv_action.OPEN_MV()
-
-
 
 
                 elif (str_mode == 2):
@@ -92,6 +77,14 @@ class STRAT_PROGRAM:
                 elif (str_mode == 3):
                     self.matrix.print_text("Blockly Mode",10,20)
                     self.whileMode = False
+
+
+
+
+
+
+
+
 
 
 

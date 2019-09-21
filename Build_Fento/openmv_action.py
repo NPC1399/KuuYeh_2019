@@ -15,12 +15,15 @@ class OPEN_MV():
 
     def __init__(self):
 
-        # Setup OpenMV
+        # Setup Matrix LED
+        self.I2C_2 = machine.I2C(2)
+        self.matrix = is31fl3731.Matrix(self.I2C_2)
 
+        # Setup OpenMV
         self.opmv = openmv_reading.FATAG()
 
         # Setup sign
-        self.s=sign.Signs(machine.I2C(2))
+        self.s=sign.Signs()
 
         # Setup Motor
         self.m = motor.MOTOR()
@@ -30,9 +33,7 @@ class OPEN_MV():
         #self.TTS = S1V30120.S1V30120(self.SPI_2)
         #self.TTS.enableS1V()
 
-        # Setup Matrix LED
-        self.I2C_2 = machine.I2C(2)
-        self.matrix = is31fl3731.Matrix(self.I2C_2)
+
 
         # Setup Variable
         self.value = 0
@@ -49,31 +50,6 @@ class OPEN_MV():
         self.read_openMV()
 
 
-    def blink(self):
-        t=0
-        for t in range(0, 3):
-            self.matrix.fill(0)
-            self.s.tableledon(3,5,6,6)
-            self.s.tableledon(10,12,6,6)
-            self.s.tableledon(2,2,7,7)
-            self.s.tableledon(6,6,7,7)
-            self.s.tableledon(9,9,7,7)
-            self.s.tableledon(13,13,7,7)
-            pyb.delay(300)
-            self.matrix.fill(0)
-            self.s.tableledon(2,6,2,6)
-            self.s.tableledon(3,5,1,7)
-            self.s.tableledon(9,13,2,6)
-            self.s.tableledon(10,12,1,7)
-            pyb.delay(300)
-            self.matrix.fill(0)
-
-    def normaleye(self):
-        print("normal eye")
-        self.s.tableledon(2,6,2,6)
-        self.s.tableledon(3,5,1,7)
-        self.s.tableledon(9,13,2,6)
-        self.s.tableledon(10,12,1,7)
 
     def read_openMV(self):
         NM = 0
@@ -81,9 +57,11 @@ class OPEN_MV():
         Minus = 0
         Solution = 0
         WM = 0
+        #self.s.camsign()
+        #pyb.delay(500)
         while 1:
             print("begin")
-            self.normaleye()
+            self.s.eyenormal()
             data_raw = self.opmv.ATAG()
             print(data_raw)
 
@@ -98,24 +76,26 @@ class OPEN_MV():
             elif (data_raw== 07) :
                 self.s.forwardsign()
                 #self.TTS.S1V30120_speech("Forward",0)
-                self.m.forward(8)
-                self.matrix.fill(0)
+                self.m.backward(4)
+
             elif (data_raw== 08) :
                 print("back")
                 self.s.backwardsign()
                 #self.TTS.S1V30120_speech("Backward",0)
-                self.m.backward(8)
-                self.matrix.fill(0)
+                self.m.forward(4)
+
             elif (data_raw== 10) :
                 print("right")
                 self.s.leftsign()
                 #self.TTS.S1V30120_speech("Right",0)
-                self.matrix.fill(0)
+                self.m.rotateright(4)
+
             elif (data_raw== 09) :
                 print("left")
                 self.s.rightsign()
                 #self.TTS.S1V30120_speech("Left",0)
-                self.matrix.fill(0)
+                self.m.rotateleft(4)
+
 #----------------------------------
             # Numbers
             elif (data_raw== 48) :
@@ -352,9 +332,10 @@ class OPEN_MV():
                 #self.TTS.S1V30120_speech("Z",0)
                 self.matrix.print_text("Z",15,35)
             elif (data_raw== 91) :
+                pass
                 #self.TTS.S1V30120_speech("space",0)
-                self.matrix.fill(0)
-                pyb.delay(450)
+                #self.matrix.fill(0)
+                #pyb.delay(450)
 #----------------------------------
            # record Characters mode
             elif (data_raw== 02) :
@@ -466,34 +447,20 @@ class OPEN_MV():
                 #self.TTS.S1V30120_speech("turn on light,  on!",0)
                 self.matrix.fill(10)
                 pyb.delay(1000)
-                self.matrix.fill(0)
+
             elif (data_raw== 13) :
                 print("off")
                 #self.TTS.S1V30120_speech("turn off light,  off!",0)
                 self.matrix.fill(0)
                 pyb.delay(1000)
+
             elif (data_raw== 11) :
                 pass
                 #self.TTS.S1V30120_speech("toggle",0)
             elif (data_raw== 05) :
                 #self.TTS.S1V30120_speech("welcome!   I'm fento!   and I love you.",0)
                 print("ping ping")
-                t=0
-                for t in range(0, 3):
-                    self.matrix.fill(0)
-                    self.s.tableledon(3,5,6,6)
-                    self.s.tableledon(10,12,6,6)
-                    self.s.tableledon(2,2,7,7)
-                    self.s.tableledon(6,6,7,7)
-                    self.s.tableledon(9,9,7,7)
-                    self.s.tableledon(13,13,7,7)
-                    pyb.delay(300)
-                    self.matrix.fill(0)
-                    self.s.tableledon(2,6,2,6)
-                    self.s.tableledon(3,5,1,7)
-                    self.s.tableledon(9,13,2,6)
-                    self.s.tableledon(10,12,1,7)
-                    pyb.delay(300)
+                self.s.eyeblink_fast(2)
 #----------------------------------
            # record movement mode
             elif (data_raw== 01) :
@@ -534,7 +501,7 @@ class OPEN_MV():
                         elif (data_raw== 01) :
                             #self.TTS.S1V30120_speech("stop",0)
                             print("ok")
-                            self.blink()
+                            self.s.eyeblink_fast(2)
                             j=0
                             while j<=i:
                                 print(y[j])
@@ -555,7 +522,7 @@ class OPEN_MV():
                                     self.s.rightsign()
                                     self.m.rotateleft(10)
                                 j=j+1
-                            self.matrix.fill(0)
+
                             break
                         else:
                             self.matrix.print_text("Noooo",15,30)
@@ -581,31 +548,31 @@ class OPEN_MV():
 
 #----------------------------------
            # feel
-            elif (data_raw== 29) :
-                self.s.feelhappy()
-                #self.TTS.S1V30120_speech("happy",0)
-                pyb.delay(500)
-                self.matrix.fill(0)
-            elif (data_raw== 30) :
-                self.s.feelshock()
-                #self.TTS.S1V30120_speech("oops!",0)
-                pyb.delay(500)
-                self.matrix.fill(0)
-            elif (data_raw== 31) :
-                self.s.feelangry()
-                #self.TTS.S1V30120_speech("angry",0)
-                pyb.delay(500)
-                self.matrix.fill(0)
-            elif (data_raw== 32) :
-                self.s.feellove()
-                #self.TTS.S1V30120_speech("I love you",0)
-                pyb.delay(500)
-                self.matrix.fill(0)
-            elif (data_raw== 33) :
-                self.s.feelbore()
-                #self.TTS.S1V30120_speech("bore",0)
-                pyb.delay(500)
-                self.matrix.fill(0)
+            #elif (data_raw== 29) :
+                ##self.s.feelhappy()
+                ##self.TTS.S1V30120_speech("happy",0)
+                #pyb.delay(500)
+                #self.matrix.fill(0)
+            #elif (data_raw== 30) :
+                ##self.s.feelshock()
+                ##self.TTS.S1V30120_speech("oops!",0)
+                #pyb.delay(500)
+                #self.matrix.fill(0)
+            #elif (data_raw== 31) :
+                ##self.s.feelangry()
+                ##self.TTS.S1V30120_speech("angry",0)
+                #pyb.delay(500)
+                #self.matrix.fill(0)
+            #elif (data_raw== 32) :
+                ##self.s.feellove()
+                ##self.TTS.S1V30120_speech("I love you",0)
+                #pyb.delay(500)
+                #self.matrix.fill(0)
+            #elif (data_raw== 33) :
+                ##self.s.feelbore()
+                ##self.TTS.S1V30120_speech("bore",0)
+                #pyb.delay(500)
+                #self.matrix.fill(0)
 
             print("end")
 
