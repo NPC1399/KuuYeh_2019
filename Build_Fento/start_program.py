@@ -17,9 +17,9 @@ class STRAT_PROGRAM:
     def __init__(self):
 
         # Setup Text To Speech : Can't Use
-        #self.SPI_2 = SPI(1, SPI.MASTER, baudrate=750000, polarity=1, phase=1, bits=8, firstbit=SPI.MSB)
-        #self.TTS = S1V30120.S1V30120(self.SPI_2)
-        #self.TTS.enableS1V()
+        self.SPI_2 = SPI(2, SPI.MASTER, baudrate=750000, polarity=1, phase=1, bits=8, firstbit=SPI.MSB)
+        self.TTS = S1V30120.S1V30120(self.SPI_2)
+        self.TTS.enableS1V()
 
         # Setup Matrix LED
         self.I2C_2 = machine.I2C(2)
@@ -27,6 +27,9 @@ class STRAT_PROGRAM:
 
         # Setup OpenMV
         self.opmv = openmv_reading.FATAG()
+
+        # Speak
+        self.TTS.S1V30120_speech("Let's Choose __Mode",0)
 
         # Setup Choose Mode
         self.whileMode = True

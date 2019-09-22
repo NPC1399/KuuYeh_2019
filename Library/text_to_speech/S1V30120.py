@@ -21,12 +21,12 @@ class S1V30120:
     idx = 0
     success = False
 
-    #Used to download image data. This is changed by the 
+    #Used to download image data. This is changed by the
     #This is why is declares as static volatile.
     #Note: unsigned short is max 32767, while our image data is 31208 in length
     #one must change this to unsigned long if future image data becomes larger
     TTS_DATA_IDX = 0
-    
+
     ## Private methods
     def __init__(self,SPI):
 
@@ -82,7 +82,7 @@ class S1V30120:
         print("Registering: ")
         self.show_response(self.success)
 
-        #Once again print version information 
+        #Once again print version information
         self.S1V30120_get_version()
         self.success = self.S1V30120_configure_audio()
         print("Configuring audio: ")
@@ -96,7 +96,7 @@ class S1V30120:
         print("Configure TTS: ")
         self.show_response(self.success)
 
-        self.S1V30120_speech("my name is matenat i come from sisaket and i love you so much",0)
+        #self.S1V30120_speech("my name is matenat i come from sisaket and i love you so much",0)
 
     def S1V30120_reset(self):
 
@@ -119,14 +119,14 @@ class S1V30120:
         tmp_disp = 0
         msg_ver = [0x04, 0x00, 0x05, 0x00]
         self.S1V30120_send_message(msg_ver, 0x04)
-    
+
         #wait for ready signal
         while(self.S1V30120_RDY.value() == False):
             print("wait for ready signal")
-    
+
         #receive 20 bytes
         self.S1V30120_CS.low()
-        
+
         #wait for message start
         while(self._SPI.send_recv(0x00) != b'\xaa'):
             print("wait for message start")
@@ -135,7 +135,7 @@ class S1V30120:
             self.rcvd_msg[i] = self._SPI.send_recv(0x00)
 
         #Send 16 bytes padding
-        self.S1V30120_send_padding(16) 
+        self.S1V30120_send_padding(16)
 
         self.S1V30120_CS.high()
 
@@ -260,10 +260,10 @@ class S1V30120:
     #Message parser
     #This function receives as parameter the expected response code and result
     #And returns 1 if the expected result is received, 0 otherwise
-    #As an observation, most messages are 6 bytes in length 
+    #As an observation, most messages are 6 bytes in length
     #(2 bytes length + 2 bytes response code + 2 bytes response)
     def S1V30120_parse_response(self,expected_message,expected_result,padding_bytes):
-        
+
         rcvd_tmp = 0
         #wait for ready signal
         while(self.S1V30120_RDY.value() == False):
