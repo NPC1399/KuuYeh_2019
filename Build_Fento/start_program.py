@@ -29,7 +29,7 @@ class STRAT_PROGRAM:
         self.opmv = openmv_reading.FATAG()
 
         # Speak
-        self.TTS.S1V30120_speech("Let's Choose __Mode",0)
+        #self.TTS.S1V30120_speech("Let's Choose __Mode",0)
 
         # Setup Choose Mode
         self.whileMode = True
@@ -67,7 +67,7 @@ class STRAT_PROGRAM:
                     #self.matrix.print_text("OpenMV Mode",10,20)
                     self.whileMode = False
                     self.s.camsign()
-                    pyb.delay(1000)
+                    self.TTS.S1V30120_speech("Open M V Mode",0)
                     import openmv_action
                     opmv_action = openmv_action.OPEN_MV()
 

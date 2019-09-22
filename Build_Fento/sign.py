@@ -39,8 +39,13 @@ class Signs:
         self.table_led_off(7,9,3,5)
         self.table_led_off(4,5,2,2)
         self.table_led_on(8,8,4,4)
-
-
+    def recordsign(self):
+        self.display.fill(0)
+        self.table_led_on(5,11,0,6)
+        self.table_led_on(4,12,1,5)
+        self.table_led_off(6,10,1,5)
+        self.table_led_on(7,9,2,4)
+        self.table_led_off(8,8,3,3)
     # def remotesign(self):
     # 	self.display.fill(0)
     # 	self.table_led_on(0,15,0,8)
