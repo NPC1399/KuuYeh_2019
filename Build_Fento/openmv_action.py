@@ -109,6 +109,7 @@ class OPEN_MV():
             # Numbers
             elif (data_raw== 48) :
                 self.matrix.print_text("0",15,35)
+                self.matrix.print_text(" ",15,35)
                 self.TTS.S1V30120_speech("0",0)
                 if NM ==0 :
                     Solution = 0
@@ -123,6 +124,7 @@ class OPEN_MV():
                 Minus = 0
             elif (data_raw== 49) :
                 self.matrix.print_text("1",15,35)
+                self.matrix.print_text(" ",15,35)
                 self.TTS.S1V30120_speech("1",0)
                 if NM ==0 :
                     Solution = 1
@@ -137,6 +139,7 @@ class OPEN_MV():
                 Minus = 0
             elif (data_raw== 50) :
                 self.matrix.print_text("2",15,35)
+                self.matrix.print_text(" ",15,35)
                 self.TTS.S1V30120_speech("2",0)
                 if NM ==0 :
                     Solution = 2
@@ -150,6 +153,7 @@ class OPEN_MV():
                 Minus = 0
             elif (data_raw== 51) :
                 self.matrix.print_text("3",15,35)
+                self.matrix.print_text(" ",15,35)
                 self.TTS.S1V30120_speech("3",0)
                 if NM ==0 :
                     Solution = 3
@@ -164,6 +168,7 @@ class OPEN_MV():
                 Minus = 0
             elif (data_raw== 52) :
                 self.matrix.print_text("4",15,35)
+                self.matrix.print_text(" ",15,35)
                 self.TTS.S1V30120_speech("4",0)
                 if NM ==0 :
                     Solution = 4
@@ -178,6 +183,7 @@ class OPEN_MV():
                 Minus = 0
             elif (data_raw== 53) :
                 self.matrix.print_text("5",15,35)
+                self.matrix.print_text(" ",15,35)
                 self.TTS.S1V30120_speech("5",0)
                 if NM ==0 :
                     Solution = 5
@@ -192,6 +198,7 @@ class OPEN_MV():
                 Minus = 0
             elif (data_raw== 54) :
                 self.matrix.print_text("6",15,35)
+                self.matrix.print_text(" ",15,35)
                 self.TTS.S1V30120_speech("6",0)
                 if NM ==0 :
                     Solution = 6
@@ -206,6 +213,7 @@ class OPEN_MV():
                 Minus = 0
             elif (data_raw== 55) :
                 self.matrix.print_text("7",15,35)
+                self.matrix.print_text(" ",15,35)
                 self.TTS.S1V30120_speech("7",0)
                 if NM ==0 :
                     Solution = 7
@@ -220,6 +228,7 @@ class OPEN_MV():
                 Minus = 0
             elif (data_raw== 56) :
                 self.matrix.print_text("8",15,35)
+                self.matrix.print_text(" ",15,35)
                 self.TTS.S1V30120_speech("8",0)
                 if NM ==0 :
                     Solution = 8
@@ -234,6 +243,7 @@ class OPEN_MV():
                 Minus = 0
             elif (data_raw== 57) :
                 self.matrix.print_text("9",15,35)
+                self.matrix.print_text(" ",15,35)
                 self.TTS.S1V30120_speech("9",0)
                 if NM ==0 :
                     Solution = 9
@@ -265,9 +275,12 @@ class OPEN_MV():
             elif (data_raw==61) :
                 self.matrix.print_text("=",15,35)
                 self.TTS.S1V30120_speech("Equal",0)
-                if Plus==1 | Minus==1 :
+
+                if NM ==1 :
                     self.matrix.print_text((str)(Solution),15,35)
+                    self.matrix.print_text(" ",15,35)
                     self.TTS.S1V30120_speech((str)(Solution),0)
+
                 NM = 0
                 Plus = 0
                 Minus = 0
