@@ -38,7 +38,7 @@ class STRAT_PROGRAM:
 
 
     def modeChoose(self):
-
+        #initial
         change_mode = False
         str_mode = 1
         self.s=sign.Signs()
@@ -53,16 +53,25 @@ class STRAT_PROGRAM:
 
 
             # Mode Observe
-            if (self.data_raw == 49):
+            #Mode 1 : OpenMV
+            #Mode 2 : Alexa
+            #Mode 3 : Blcokly
+            #Mode 4 : ToF 
+            if (self.data_raw == 49):#1 sign
                 str_mode = 1
                 change_mode = True
-            elif (self.data_raw == 50):
+            elif (self.data_raw == 50):#2 sign
                 str_mode = 2
                 change_mode = True
-            elif (self.data_raw == 51):
+            elif (self.data_raw == 51):#3 sign
                 str_mode = 3
                 change_mode = True
-            elif (self.data_raw == 61):
+            elif (self.data_raw == 52):#4 sign
+                str_mode = 4
+                change_mode = True
+            
+            #Enter str_mode
+            elif (self.data_raw == 61): #Equal sign
                 if (str_mode == 1):
                     #self.matrix.print_text("OpenMV Mode",10,20)
                     self.whileMode = False
@@ -71,16 +80,17 @@ class STRAT_PROGRAM:
                     import openmv_action
                     opmv_action = openmv_action.OPEN_MV()
 
-
                 elif (str_mode == 2):
                     self.matrix.print_text("Alexa Mode",10,20)
                     self.whileMode = False
-
 
                 elif (str_mode == 3):
                     self.matrix.print_text("Blockly Mode",10,20)
                     self.whileMode = False
 
+                elif (str_mode == 4):
+                    self.matrix.print_text("ToF",10,20)
+                    self.whileMode = False
 
 
 
