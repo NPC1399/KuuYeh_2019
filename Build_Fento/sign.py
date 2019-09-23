@@ -10,6 +10,7 @@ class Signs:
     def __init__(self):
         self.I2C = machine.I2C(2)
         self.display = is31fl3731.Matrix(self.I2C)
+        self.led_fill_flag = 0
 
     def table_led_on(self,a,x,b,y):
         self.i=a
@@ -105,9 +106,10 @@ class Signs:
     # 	self.table_led_on(9,12,7,8)
     # 	self.table_led_on(11,12,0,8)
 
-    def eyenormal(self):
+    def eyenormal(self,):
         #print("eyenormal")
-        self.display.fill(0)
+        if self.led_fill_flag == 0:
+            self.display.fill(0)
         self.table_led_on(4,5,1,5)
         self.table_led_on(11,12,1,5)
         self.table_led_on(3,6,2,4)
