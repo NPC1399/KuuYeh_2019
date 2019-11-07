@@ -50,8 +50,8 @@ class FontRenderer:
                 if (line >> char_y) & 0x1:
                     if x + char_x < self._width:
                         self._pixel(x + char_x, y + char_y, *args, **kwargs)
-                        print("char_x = "+str(x + char_x))
-                        print("char_y = "+str(y + char_y))
+                        #print("char_x = "+str(x + char_x))
+                        #print("char_y = "+str(y + char_y))
 
     def text(self, text, x, y, *args, **kwargs):
         # Draw the specified text at the specified location.
